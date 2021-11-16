@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Game
+{% endblock %}
+
+{% block main %}
+    <p>
+        {{ question }}
+        <form action="/game" method="post">
+            <button class="btn btn-primary" type="submit">Next</button>
+        </form>
+    </p>
+    <table>
+        <thead>
+            <tr>
+                <th>Question</th>
+                <th>Answer</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ runnerup }}</td>
+                <td></td>
+            </tr>
+            {% for q in past %}
+            <tr>
+                <td>{{ q.question }}</td>
+                <td>{{ q.answer }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
