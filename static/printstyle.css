@@ -1,0 +1,66 @@
+main .form-control
+{
+    /* Center form controls */
+    display: inline-block;
+
+    /* Override Bootstrap's 100% width for form controls */
+    width: auto;
+}
+
+main
+{
+    /* Scroll horizontally as needed */
+    overflow-x: auto;
+
+    /* Center contents */
+    text-align: center;
+}
+
+main img
+{
+    /* Constrain images on small screens */
+    max-width: 100%;
+}
+
+/* table formatting */
+table .fixed
+{
+    table-layout: fixed;
+}
+table .fixed td
+{
+    overflow: hidden;
+}
+th
+{
+    font-size: 20px;
+    text-align: center;
+}
+td
+{
+    font-size: 20px;
+    height: 2in;
+    width: 2in;
+    text-align: center;
+}
+
+/* printing formatting from https://stackoverflow.com/a/14621368 */
+@media print {
+    .page-break { 
+        height: 0; 
+        page-break-before: always; 
+        margin: 1in; 
+        border-top: none; 
+    }
+}
+body {
+    margin-left: 2em; 
+    margin-right: 2em;
+}
+.page {
+    height: 11in;
+    padding-top: 1in;
+    page-break-after: always;   
+    font-family: Arial, Helvetica, sans-serif;
+    position: relative;
+}

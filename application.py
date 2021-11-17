@@ -41,9 +41,28 @@ def game():
     if request.method == "GET":
         if len(qs) == 0:
             return redirect("/")
-        num = random.randint(0, len(qs) - 1)
-        past.append(qs.pop(num))
+        past.append(qs.pop(random.randint(0, len(qs) - 1)))
         return render_template("game.html", question=past[len(past) - 1]["question"], runnerup=(past[len(past) - 2]["question"]
-               if len(past) > 1 else ""), past=(past[:len(past) - 2][::-1] if len(past) > 2 else ""))
+               if len(past) > 1 else ""), past=(past[:len(past) - 2][::-1] if len(past) > 2 else []))
     else:
         return redirect("/game")
+
+
+@app.route("/generate", methods=["GET", "POST"])
+def generate():
+    """generates bingo boards"""
+    if request.method == "GET":
+        return render_template("generate.html")
+    else:
+        amount = int(request.form.get("amount"))
+        boards = [[] for i in range(amount)]
+        for i in range(amount):
+            bank = qbank.copy()
+            for j in range(5):
+                boards[i].append([])
+                for k in range(5):
+                    if j == 2 and k == 2:
+                        boards[i][j].append("FREE")
+                    else:
+                        boards[i][j].append(bank.pop(random.randint(0, len(bank) - 1))["answer"])
+        return render_template("boards.html", boards=boards)

@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <form action="/generate" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="amount" placeholder="Number of Boards" type="number">
+        </div>
+        <button class="btn btn-primary" type="submit">Generate</button>
+    </form>
+{% endblock %}

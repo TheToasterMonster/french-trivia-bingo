@@ -45,3 +45,13 @@ main img
     /* Constrain images on small screens */
     max-width: 100%;
 }
+
+/* table formatting */
+table .fixed
+{
+    table-layout: fixed;
+}
+table .fixed td
+{
+    overflow: hidden;
+}

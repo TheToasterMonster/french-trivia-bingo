@@ -5,13 +5,17 @@
 {% endblock %}
 
 {% block main %}
-    <p>
+    <p style="font-size: 24px">
         {{ question }}
+    </p>
+    <p>
         <form action="/game" method="post">
             <button class="btn btn-primary" type="submit">Next</button>
         </form>
     </p>
-    <table>
+    <table class="fixed" border="1">
+        <col id="question" width="0px"/>
+        <col id="answer" width="0px"/>
         <thead>
             <tr>
                 <th>Question</th>
@@ -31,4 +35,33 @@
             {% endfor %}
         </tbody>
     </table>
+    {% block javascript %}
+    <script>
+        document.getElementById("question").width = window.innerWidth * .5;
+        document.getElementById("answer").width = window.innerHeight * .5;
+        /* text to speech function adjusted from https://stackoverflow.com/a/69729143 */
+        if (voiceLoaded()) {
+            speak();
+        } else {
+            speechSynthesis.addEventListener('voiceschanged', speak);
+        }
+        function speak() {
+            var msg = new SpeechSynthesisUtterance("{{ question }}");
+            msg.lang = 'en-US';
+            msg.voice = getFemaleVoice();
+            speechSynthesis.speak(msg);
+        }
+        function getFemaleVoice() {
+            var voices = speechSynthesis.getVoices();
+            for (var i = 0; i < voices.length; i++) {
+                if (voices[i].name === "Samantha") {
+                    return voices[i];
+                }
+            }
+        }
+        function voiceLoaded() {
+            return speechSynthesis.getVoices().length;
+        }
+    </script>
+    {% endblock %}
 {% endblock %}
