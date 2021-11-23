@@ -1,5 +1,5 @@
 # French Trivia Bingo
-#### Video Demo:  <URL HERE>
+#### Video Demo:  <https://youtu.be/yI77BWh-V9s>
 
 ## Description
 ### General
